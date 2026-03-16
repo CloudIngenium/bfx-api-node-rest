@@ -1,7 +1,7 @@
 declare module 'bfx-api-node-models' {
    
   class Model {
-    constructor(...args: any[])
+    constructor(...args: any[]) // eslint-disable-line @typescript-eslint/no-explicit-any -- untyped external package
     serialize(): unknown[]
     [key: string]: any // eslint-disable-line @typescript-eslint/no-explicit-any
   }
