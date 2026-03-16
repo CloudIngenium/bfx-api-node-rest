@@ -1,5 +1,5 @@
 declare module 'bfx-api-node-models' {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   class Model {
     constructor(...args: any[])
     serialize(): unknown[]

@@ -1,21 +1,16 @@
-import tseslint from '@typescript-eslint/eslint-plugin'
-import tsparser from '@typescript-eslint/parser'
+import tseslint from 'typescript-eslint'
 
-export default [
+export default tseslint.config(
+  ...tseslint.configs.recommended,
   {
     files: ['src/**/*.ts', 'test/**/*.ts'],
     languageOptions: {
-      parser: tsparser,
       parserOptions: {
-        ecmaVersion: 2022,
+        ecmaVersion: 2024,
         sourceType: 'module'
       }
     },
-    plugins: {
-      '@typescript-eslint': tseslint
-    },
     rules: {
-      ...tseslint.configs.recommended.rules,
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       'no-console': 'warn',
@@ -26,4 +21,4 @@ export default [
   {
     ignores: ['dist/', 'docs/', 'lib/', 'node_modules/']
   }
-]
+)

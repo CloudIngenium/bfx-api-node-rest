@@ -237,7 +237,7 @@ export class RESTv2 {
       } else {
         err.response = parsed
       }
-    } catch (_err) {
+    } catch {
       err.response = rawBody
     }
     return err
