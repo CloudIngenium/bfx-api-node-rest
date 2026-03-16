@@ -8,7 +8,7 @@ source/images
 todo
 package-lock.json
 .env
-/dist
+# /dist — committed for git-based consumers (e.g. github: installs)
 tags
 .nyc_output
 coverage
