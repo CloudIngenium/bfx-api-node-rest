@@ -33,7 +33,10 @@ src/
   index.ts            # Package entry — exports RESTv1, RESTv2
   rest1.ts            # RESTv1 client (deprecated)
   rest2.ts            # RESTv2 client (primary)
-  errors.ts           # Custom error types
+  errors.ts           # Typed error hierarchy (BfxApiError, RateLimitError, AuthenticationError, etc.)
+  rate-limiter.ts     # Sliding-window RateLimiter, createBitfinexRateLimiter
+  retry.ts            # retryWithBackoff, abortableSleep, isRetryable, getBackoffDelay
+  circuit-breaker.ts  # CircuitBreaker (3-state), getCircuitBreaker registry, backoffMs, isRetryableStatus
   types/              # Type declarations for untyped dependencies
     bfx-api-mock-srv.d.ts
     bfx-api-node-models.d.ts
@@ -42,6 +45,13 @@ test/                 # Mocha test suites
 dist/                 # Compiled output (git-tracked for consumers)
 examples/             # Usage examples
 ```
+
+### Resilience Utilities (new)
+This package is the canonical home for Bitfinex API resilience patterns, consumed by BfxPingPongBot, bitfinex-api-node, and MCP servers:
+- **`RateLimiter`** — Sliding-window rate limiter with `acquire()` and `throttle()` methods
+- **`retryWithBackoff()`** — Exponential backoff with Bitfinex error awareness (rate limits, nonce, network)
+- **`CircuitBreaker`** — 3-state (CLOSED/OPEN/HALF_OPEN) circuit breaker with singleton registry
+- **`backoffMs()`** / **`isRetryableStatus()`** — Utility helpers for retry logic
 
 ## Key Dependencies
 
