@@ -143,7 +143,7 @@ function _takeResNotify (data: unknown): BfxNotification {
  *
  * @example
  * ```typescript
- * import { RESTv2 } from '@jcbit/bfx-api-node-rest'
+ * import { RESTv2 } from '@cloudingenium/bfx-api-node-rest'
  *
  * const rest = new RESTv2({
  *   apiKey: 'YOUR_API_KEY',
