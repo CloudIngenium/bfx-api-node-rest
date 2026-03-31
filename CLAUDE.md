@@ -2,7 +2,7 @@
 
 ## Project Purpose
 
-CloudIngenium fork of the official Bitfinex REST v1 & v2 API wrapper for Node.js. Published as `@jcbit/bfx-api-node-rest` to GitHub Packages and npm. Used as a dependency by `@jcbit/bitfinex-api-node` and indirectly by BfxLendingBot.
+CloudIngenium fork of the official Bitfinex REST v1 & v2 API wrapper for Node.js. Published as `@cloudingenium/bfx-api-node-rest` to GitHub Packages and npm. Used as a dependency by `@cloudingenium/bitfinex-api-node` and indirectly by BfxLendingBot.
 
 ## Stack
 

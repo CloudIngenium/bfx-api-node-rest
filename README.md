@@ -1,6 +1,6 @@
 # Bitfinex RESTv1 & RESTv2 APIs for Node.JS
 
-[![CI](https://github.com/JCBauza/bfx-api-node-rest/actions/workflows/ci.yml/badge.svg)](https://github.com/JCBauza/bfx-api-node-rest/actions/workflows/ci.yml)
+[![CI](https://github.com/CloudIngenium/bfx-api-node-rest/actions/workflows/ci.yml/badge.svg)](https://github.com/CloudIngenium/bfx-api-node-rest/actions/workflows/ci.yml)
 
 A Node.JS reference implementation of the Bitfinex REST APIs
 
@@ -24,18 +24,18 @@ when creating an interface.
 
 ## Requirements
 
-* Node.js >= 22.0.0
+* Node.js >= 24.0.0
 
 ## Installation
 
 ```bash
-npm i --save @jcbit/bfx-api-node-rest
+npm i --save @cloudingenium/bfx-api-node-rest
 ```
 
 ### Quickstart
 
 ```typescript
-import { RESTv2 } from '@jcbit/bfx-api-node-rest'
+import { RESTv2 } from '@cloudingenium/bfx-api-node-rest'
 
 const rest = new RESTv2({ transform: true })
 
@@ -50,7 +50,7 @@ Documentation at [https://docs.bitfinex.com/v2/reference](https://docs.bitfinex.
 ## Example
 
 ```typescript
-import { RESTv2 } from '@jcbit/bfx-api-node-rest'
+import { RESTv2 } from '@cloudingenium/bfx-api-node-rest'
 
 const rest = new RESTv2({
   apiKey: '...',
@@ -78,12 +78,12 @@ console.log(candles)
 
 ### Breaking changes
 
-* **Node.js >= 22 required** — upgrade from the previous minimum of Node 8.3
+* **Node.js >= 24 required** — upgrade from the previous minimum of Node 8.3
 * **ESM only** — `require()` is no longer supported; use `import` instead
 * **`agent` option removed** — use a custom `fetch` function for proxy support:
   ```typescript
   import { ProxyAgent } from 'undici'
-  import { RESTv2 } from '@jcbit/bfx-api-node-rest'
+  import { RESTv2 } from '@cloudingenium/bfx-api-node-rest'
 
   const dispatcher = new ProxyAgent('http://proxy:8080')
   const rest = new RESTv2({

@@ -206,7 +206,7 @@ export declare class RESTv2 {
      * @param params.query - Optional query params: `start`, `end`, `limit`, `sort`
      * @param cb - Optional callback
      * @returns Array of Candle instances (when transform enabled)
-     * @see http://docs.bitfinex.com/v2/reference#rest-public-candles
+     * @see https://docs.bitfinex.com/v2/reference#rest-public-candles
      */
     candles(params: {
         timeframe: string;
