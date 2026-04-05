@@ -4,6 +4,7 @@ export { BfxApiError, RateLimitError, AuthenticationError, InsufficientFundsErro
 export { RateLimiter, createBitfinexRateLimiter } from './rate-limiter.js';
 export { retryWithBackoff, abortableSleep, isRetryable, getBackoffDelay } from './retry.js';
 export { CircuitBreaker, CircuitBreakerOpenError, getCircuitBreaker, getAllCircuitBreakerStats, backoffMs, isRetryableStatus } from './circuit-breaker.js';
+export { getEnvVar, getRequiredEnvVar, getEnvVarAsNumber, getEnvVarAsInt, getEnvVarAsBoolean, getEnvVarAsArray } from './env.js';
 export type { RESTv1Options } from './rest1.js';
 export type { RESTv2Options, Callback, APIError } from './rest2.js';
 export type { RateLimiterOptions } from './rate-limiter.js';

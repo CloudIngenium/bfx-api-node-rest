@@ -4,4 +4,5 @@ export { BfxApiError, RateLimitError, AuthenticationError, InsufficientFundsErro
 export { RateLimiter, createBitfinexRateLimiter } from './rate-limiter.js';
 export { retryWithBackoff, abortableSleep, isRetryable, getBackoffDelay } from './retry.js';
 export { CircuitBreaker, CircuitBreakerOpenError, getCircuitBreaker, getAllCircuitBreakerStats, backoffMs, isRetryableStatus } from './circuit-breaker.js';
+export { getEnvVar, getRequiredEnvVar, getEnvVarAsNumber, getEnvVarAsInt, getEnvVarAsBoolean, getEnvVarAsArray } from './env.js';
 //# sourceMappingURL=index.js.map

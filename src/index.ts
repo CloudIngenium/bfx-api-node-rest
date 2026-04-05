@@ -18,6 +18,14 @@ export {
   backoffMs,
   isRetryableStatus
 } from './circuit-breaker.js'
+export {
+  getEnvVar,
+  getRequiredEnvVar,
+  getEnvVarAsNumber,
+  getEnvVarAsInt,
+  getEnvVarAsBoolean,
+  getEnvVarAsArray
+} from './env.js'
 
 export type { RESTv1Options } from './rest1.js'
 export type { RESTv2Options, Callback, APIError } from './rest2.js'
