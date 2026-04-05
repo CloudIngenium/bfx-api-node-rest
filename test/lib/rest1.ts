@@ -37,7 +37,8 @@ describe('REST v1', () => {
 
   describe('public endpoints', function () {
     const bfxRest = new RESTv1()
-    this.timeout(10000)
+    this.timeout(30000)
+    this.retries(2)
 
     it('should get a ticker', (done) => {
       if (skipPublic) return done()
