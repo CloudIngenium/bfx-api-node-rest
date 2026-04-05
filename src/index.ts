@@ -26,11 +26,11 @@ export {
   getEnvVarAsBoolean,
   getEnvVarAsArray
 } from './env.js'
-export { fetchJson } from './http.js'
+export { fetchResponse, fetchJson } from './http.js'
 
 export type { RESTv1Options } from './rest1.js'
 export type { RESTv2Options, Callback, APIError } from './rest2.js'
 export type { RateLimiterOptions } from './rate-limiter.js'
 export type { RetryOptions } from './retry.js'
 export type { CircuitState, CircuitBreakerConfig, CircuitBreakerStats } from './circuit-breaker.js'
-export type { FetchJsonOptions, FetchJsonResult } from './http.js'
+export type { FetchResponseOptions, FetchJsonOptions, FetchJsonResult } from './http.js'

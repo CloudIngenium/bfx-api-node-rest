@@ -2,6 +2,7 @@ import assert from 'assert'
 import {
   BfxApiError,
   RateLimitError,
+  fetchResponse,
   fetchJson
 } from '../../dist/index.js'
 
@@ -27,6 +28,30 @@ describe('fetchJson', () => {
 
     assert.deepStrictEqual(result.data, { ok: true })
     assert.strictEqual(result.response.status, 200)
+  })
+
+  it('returns the raw response while composing timeout and caller signal', async () => {
+    const controller = new AbortController()
+
+    globalThis.fetch = async (_input, init) => {
+      const headers = new Headers(init?.headers)
+      assert.strictEqual(headers.get('Accept'), 'text/plain')
+      assert.ok(init?.signal instanceof AbortSignal)
+      assert.notStrictEqual(init?.signal, controller.signal)
+
+      return new Response('plain text', {
+        status: 202,
+        headers: { 'Content-Type': 'text/plain' }
+      })
+    }
+
+    const response = await fetchResponse('https://example.com', {
+      headers: { Accept: 'text/plain' },
+      signal: controller.signal
+    })
+
+    assert.strictEqual(response.status, 202)
+    assert.strictEqual(await response.text(), 'plain text')
   })
 
   it('preserves a custom Accept header and combines the caller signal', async () => {

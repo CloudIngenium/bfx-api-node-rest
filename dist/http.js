@@ -5,6 +5,17 @@ function buildSignal(signal, timeoutMs) {
     }
     return AbortSignal.timeout(timeoutMs);
 }
+/**
+ * Fetches a raw response with a default timeout and signal composition.
+ */
+export async function fetchResponse(input, options = {}) {
+    const { headers, signal, timeoutMs = 10_000, ...requestInit } = options;
+    return fetch(input, {
+        ...requestInit,
+        headers,
+        signal: buildSignal(signal, timeoutMs)
+    });
+}
 async function readResponseBody(response) {
     const contentType = response.headers.get('content-type') || '';
     if (contentType.includes('json')) {
@@ -65,10 +76,11 @@ export async function fetchJson(input, options = {}) {
     if (!requestHeaders.has('Accept')) {
         requestHeaders.set('Accept', 'application/json');
     }
-    const response = await fetch(input, {
+    const response = await fetchResponse(input, {
         ...requestInit,
         headers: requestHeaders,
-        signal: buildSignal(signal, timeoutMs)
+        signal,
+        timeoutMs
     });
     if (!response.ok) {
         const payload = await readResponseBody(response);

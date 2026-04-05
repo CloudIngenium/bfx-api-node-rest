@@ -1,9 +1,12 @@
 import { BfxApiError, createApiError } from './errors.js'
 
-export interface FetchJsonOptions extends Omit<RequestInit, 'headers' | 'signal'> {
+export interface FetchResponseOptions extends Omit<RequestInit, 'headers' | 'signal'> {
   headers?: HeadersInit
   signal?: AbortSignal
   timeoutMs?: number
+}
+
+export interface FetchJsonOptions extends FetchResponseOptions {
   requireJsonContentType?: boolean
 }
 
@@ -18,6 +21,27 @@ function buildSignal (signal: AbortSignal | undefined, timeoutMs: number): Abort
   }
 
   return AbortSignal.timeout(timeoutMs)
+}
+
+/**
+ * Fetches a raw response with a default timeout and signal composition.
+ */
+export async function fetchResponse (
+  input: string | URL,
+  options: FetchResponseOptions = {}
+): Promise<Response> {
+  const {
+    headers,
+    signal,
+    timeoutMs = 10_000,
+    ...requestInit
+  } = options
+
+  return fetch(input, {
+    ...requestInit,
+    headers,
+    signal: buildSignal(signal, timeoutMs)
+  })
 }
 
 async function readResponseBody (response: Response): Promise<unknown> {
@@ -100,10 +124,11 @@ export async function fetchJson<T> (
     requestHeaders.set('Accept', 'application/json')
   }
 
-  const response = await fetch(input, {
+  const response = await fetchResponse(input, {
     ...requestInit,
     headers: requestHeaders,
-    signal: buildSignal(signal, timeoutMs)
+    signal,
+    timeoutMs
   })
 
   if (!response.ok) {
